@@ -1,12 +1,20 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
 
 function App() {
+  const [count, setCount] = useState(0);
+  const up = () => {
+    //alert("up 함수 호출");
+    setCount(count + 1);
+  };
+  const down = () => {
+    setCount(count - 1);
+  };
   return (
     <>
-      <h1>app.jsx</h1>
+      <h2>count값:{count}</h2>
+      {/* 클릭하면 count 값을 하나 올리는 up 함수 호출 */}
+      <button onClick={up}>up</button>
+      <button onClick={down}>down</button>
     </>
   );
 }
