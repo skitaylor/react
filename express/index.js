@@ -1,3 +1,4 @@
+import { json } from "body-parser";
 import express from "express";
 //import mysql from "mysql";
 import mysql2 from "mysql2";
@@ -64,5 +65,48 @@ app.get("/nations/list", (req, res) => {
     console.log("results", results);
     console.log("fields", fields);
     res.json(results);
+  });
+});
+app.get("/nations/:id", (req, res) => {
+  console.log(req.params.id);
+  const id = req.params.id;
+  const sql = "select * from nations_table where id=?";
+  db.query(sql, [id], (err, results, fields) => {
+    console.log("err", err);
+    console.log("results", results);
+    if (results.length == 0) {
+      // 조회결과가 없을시
+      res.status(404).send("데이터를 찾을수없습니다.");
+    } else {
+      res.status(200), json(results);
+    }
+  });
+});
+
+//저장기능
+app.post("/nations/save", (req) => {
+  const { name, capital, population } = req.body;
+  console.log(`name: ${name}, capital: ${capital}, population: ${population}`);
+  const sql =
+    "insert into nations_table(name, capital, population) values(?,?,?)";
+  db.query(sql, [name, capital, population], (err, results, fields) => {
+    console.log("err", err);
+  });
+});
+// 수정기능
+app.put("/nations/:id", (req, res) => {
+  const { id, name, capital, population } = req.body;
+  const sql = "update nations_table set population=? where id=?";
+  db.query(sql, [population, id], (err, results, fields) => {
+    console.log("err", err);
+    res.status(200);
+  });
+});
+//
+app.delete("/nations/:id", (req, res) => {
+  const id = req.params.id;
+  const sql = "delete from nations_table where id=?";
+  db.query(sql, [id], (err, results, fields) => {
+    console.log("err", err);
   });
 });
