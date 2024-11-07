@@ -3,7 +3,7 @@ const Header = () => {
   return (
     <>
       <Link to="/">Home</Link>
-      <Link to="/Info">Info</Link>
+      <Link to="/info">Info</Link>
     </>
   );
 };
