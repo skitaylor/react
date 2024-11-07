@@ -1,11 +1,11 @@
-import { json } from "body-parser";
 import express from "express";
-//import mysql from "mysql";
+import mysql from "mysql";
 import mysql2 from "mysql2";
+
 const app = express();
 app.use(express.json());
 
-app.listen(8000, () => {
+app.listen(9000, () => {
   console.log("서버 시작!");
 });
 
@@ -13,7 +13,7 @@ const db = mysql2.createConnection({
   host: "127.0.0.1",
   user: "user_ex",
   password: "1234",
-  port: "3306",
+  port: "8000",
   database: "db_ex",
 });
 
@@ -57,7 +57,7 @@ app.post("/post-req", (req) => {
   console.log(`name: ${name}, age: ${age}`);
 });
 
-//목록조회
+// 목록조회
 app.get("/nations/list", (req, res) => {
   const sql = "select * from nations_table";
   db.query(sql, (err, results, fields) => {
@@ -67,6 +67,8 @@ app.get("/nations/list", (req, res) => {
     res.json(results);
   });
 });
+
+// 상세조회
 app.get("/nations/:id", (req, res) => {
   console.log(req.params.id);
   const id = req.params.id;
@@ -75,15 +77,15 @@ app.get("/nations/:id", (req, res) => {
     console.log("err", err);
     console.log("results", results);
     if (results.length == 0) {
-      // 조회결과가 없을시
-      res.status(404).send("데이터를 찾을수없습니다.");
+      // 조회결과 없음
+      res.status(404).send("요청하신 데이터를 찾을 수 없습니다!");
     } else {
-      res.status(200), json(results);
+      res.status(200).json(results);
     }
   });
 });
 
-//저장기능
+// 저장기능
 app.post("/nations/save", (req) => {
   const { name, capital, population } = req.body;
   console.log(`name: ${name}, capital: ${capital}, population: ${population}`);
@@ -93,6 +95,7 @@ app.post("/nations/save", (req) => {
     console.log("err", err);
   });
 });
+
 // 수정기능
 app.put("/nations/:id", (req, res) => {
   const { id, name, capital, population } = req.body;
@@ -102,7 +105,8 @@ app.put("/nations/:id", (req, res) => {
     res.status(200);
   });
 });
-//
+
+// 삭제기능
 app.delete("/nations/:id", (req, res) => {
   const id = req.params.id;
   const sql = "delete from nations_table where id=?";
