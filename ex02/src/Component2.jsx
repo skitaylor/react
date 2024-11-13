@@ -1,7 +1,7 @@
 export default function Fun1() {
   return (
     <>
-      <h2>안녕 재밌다1</h2>
+      <h2>hello Fun1</h2>
     </>
   );
 }
@@ -9,7 +9,7 @@ export default function Fun1() {
 export function Fun2() {
   return (
     <>
-      <h2>안녕 재밌다2</h2>
+      <h2>hello Fun2</h2>
     </>
   );
 }

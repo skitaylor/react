@@ -1,8 +1,8 @@
-# React + Vite
+##
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Comp1 을 만들고 App.jsx 에서 Comp1 에 있는 내용이 실행했을 때 출력되도록
 
-Currently, two official plugins are available:
+## Props
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- properties
+- 컴포넌트 간에 데이터를 전달하기 위한 객체

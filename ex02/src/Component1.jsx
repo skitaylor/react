@@ -1,7 +1,7 @@
 function Component1() {
   return (
     <>
-      <h2>안녕 컴포넌트1</h2>
+      <h2>Hello Component1</h2>
     </>
   );
 }

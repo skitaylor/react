@@ -5,7 +5,7 @@ import mysql2 from "mysql2";
 const app = express();
 app.use(express.json());
 
-app.listen(9000, () => {
+app.listen(8000, () => {
   console.log("서버 시작!");
 });
 
@@ -13,7 +13,7 @@ const db = mysql2.createConnection({
   host: "127.0.0.1",
   user: "user_ex",
   password: "1234",
-  port: "8000",
+  port: "3306",
   database: "db_ex",
 });
 
