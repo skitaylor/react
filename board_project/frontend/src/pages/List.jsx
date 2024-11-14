@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 const List = () => {
   const [list, setList] = useState();
   useEffect(() => {
@@ -28,7 +29,15 @@ const List = () => {
           {list.map((board) => (
             <tr key={board.id}>
               <td>{board.id}</td>
-              <td>{board.boardTitle}</td>
+              <td>
+                <Link
+                  to={{
+                    pathname: `/board/${board.id}`,
+                  }}
+                >
+                  {board.boardTitle}
+                </Link>
+              </td>
               <td>{board.boardWriter}</td>
               <td>{board.createdAt}</td>
               <td>{board.boardHits}</td>
