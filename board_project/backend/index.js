@@ -52,6 +52,8 @@ app.get("/board/list", (req, res) => {
 
 app.get("/board/:id", (req, res) => {
   const { id } = req.params;
+  const hitSql = "update board_table set boardHits=boardHits+1 where id=?";
+  db.query(hitSql, [id], (err, results, fields) => {});
   const sql = "select * from board_table where id=?";
   db.query(sql, [id], (err, results, fields) => {
     res.status(200).json(results);
