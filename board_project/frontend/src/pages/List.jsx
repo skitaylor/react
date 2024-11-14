@@ -1,7 +1,41 @@
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 const List = () => {
+  const [list, setList] = useState();
+  useEffect(() => {
+    const list_db = axios
+      .get("http://localhost:8000/board/list")
+      .then((res) => {
+        console.log("res", res.data);
+        setList(res.data);
+      });
+  }, []);
   return (
     <>
       <h2>List.jsx</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>writer</th>
+            <th>data</th>
+            <th>hits</th>
+          </tr>
+        </thead>
+        <tbody>
+          {list.map((board) => (
+            <tr key={board.id}>
+              <td>{board.id}</td>
+              <td>{board.boardTitle}</td>
+              <td>{board.boardWriter}</td>
+              <td>{board.createdAt}</td>
+              <td>{board.boardHits}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </>
   );
 };
