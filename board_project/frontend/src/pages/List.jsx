@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 const List = () => {
-  const [list, setList] = useState();
+  const [list, setList] = useState([]);
   useEffect(() => {
     const list_db = axios
       .get("http://localhost:8000/board/list")

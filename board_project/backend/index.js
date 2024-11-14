@@ -49,3 +49,11 @@ app.get("/board/list", (req, res) => {
     res.status(200).json(results);
   });
 });
+
+app.get("/board/:id", (req, res) => {
+  const { id } = req.params;
+  const sql = "select * from board_table where id=?";
+  db.query(sql, [id], (err, results, fields) => {
+    res.status(200).json(results);
+  });
+});
