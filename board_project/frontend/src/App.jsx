@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import List from "./pages/List";
 import Save from "./pages/Save";
 import Detail from "./pages/Detail";
+import Update from "./pages/Update";
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
           <Route path="/save" element={<Save />} />
           <Route path="/list" element={<List />} />
           <Route path="/board/:id" element={<Detail />} />
+          <Route path="/update/:id" element={<Update />} />
         </Routes>
       </BrowserRouter>
     </>
